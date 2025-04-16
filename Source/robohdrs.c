@@ -301,11 +301,13 @@ cmdLine( int argc, char **argv )
         case 't':
             /* specify version control tag */
             strncpy( vcTag, optarg, MAXNAME );
+            vcTag[sizeof(vcTag) - 1] = '\0';
             break;
 
         case 'p':
             /* specify project name */
             strncpy( projName, optarg, MAXNAME );
+            projName[sizeof(projName) - 1] = '\0';
             break;
 
         case 'i':
@@ -329,6 +331,7 @@ cmdLine( int argc, char **argv )
                 c = c->next = nc;
             }
             strncpy( c->name, optarg, MAXNAME );
+            c->name[sizeof(c->name) - 1] = '\0';
             break;
 
         case 'l':
@@ -370,6 +373,7 @@ cmdLine( int argc, char **argv )
 
         case 'x':
             strncpy( ctagsBin, optarg, MAXNAME );
+            ctagsBin[sizeof(ctagsBin) - 1] = '\0';
             break;
 
         case '?':
@@ -559,9 +563,13 @@ addList( ctags_t * e, char *fname, char *name, char *decl, char *type,
     e->cnt++;
 
     strncpy( ctag->fname, fname, MAXNAME );
+    ctag->fname[sizeof(ctag->fname) - 1] = '\0';
     strncpy( ctag->name, name, MAXNAME );
+    ctag->name[sizeof(ctag->name) - 1] = '\0';
     strncpy( ctag->decl, decl, MAXLINE );
+    ctag->decl[sizeof(ctag->decl) - 1] = '\0';
     strncpy( ctag->type, type, MAXNAME );
+    ctag->type[sizeof(ctag->type) - 1] = '\0';
     ctag->linenum = linenum;
 }
 
